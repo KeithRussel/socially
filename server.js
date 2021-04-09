@@ -1,6 +1,8 @@
 const express = require('express');
 const next = require('next');
 const bodyParser = require('body-parser');
+const users = require('./data/users');
+const userRoutes = require('./routes/userRoutes');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -13,12 +15,15 @@ app.prepare().then(() => {
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(bodyParser.json());
 
+  server.use(userRoutes);
+
   server.get('/a', (req, res) => {
     return app.render(req, res, '/a', req.query);
   });
 
   server.get('/b', (req, res) => {
-    return app.render(req, res, '/b', req.query);
+    // return app.render(req, res, '/b', res.json({ user: 'tj' }));
+    res.json(users);
   });
 
   server.all('*', (req, res) => {
