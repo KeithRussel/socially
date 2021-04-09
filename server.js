@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const bodyParser = require('body-parser');
+const colors = require('colors');
 const users = require('./data/users');
 const userRoutes = require('./routes/userRoutes');
 
@@ -32,6 +33,6 @@ app.prepare().then(() => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`> Server running in http://localhost:${port}`.yellow.bold);
   });
 });
