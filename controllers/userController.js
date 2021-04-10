@@ -3,7 +3,6 @@ const asyncHandler = require('express-async-handler');
 // @desc    Auth user & get token
 // @route   POST /login
 // @access  Public
-
 const authUser = asyncHandler(async (req, res) => {
   res.json('Auth User');
 });
