@@ -1,14 +1,20 @@
 const express = require('express');
 const next = require('next');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const colors = require('colors');
 const users = require('./data/users');
 const userRoutes = require('./routes/userRoutes');
+const connectDB = require('./utils/dbConnect');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
+
+dotenv.config();
+
+connectDB();
 
 app.prepare().then(() => {
   const server = express();
