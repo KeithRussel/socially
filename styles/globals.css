@@ -14,3 +14,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --primary-color: #e9b7ff;
+  --link-color: #489efc;
+  --light-color: #f4f4f4;
+  --danger-color: #271819;
+  --success-color: #28a745;
+}
