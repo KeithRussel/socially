@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.wrapper form h2 {
+  text-align: center;
+}
+
 .loginBgImage {
   background-image: url(../public/uploads/sampleimage.jpg);
   height: 100vh;
@@ -32,4 +36,11 @@
   background-color: black;
   height: 100vh;
   opacity: 0.4;
+}
+
+.loginInput {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 9999px;
+  border-color: black;
 }

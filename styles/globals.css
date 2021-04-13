@@ -15,8 +15,45 @@ a {
   box-sizing: border-box;
 }
 
+.m-auto {
+  margin: auto;
+}
+
+.d-grid {
+  display: grid;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='number'],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type='submit'] {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type='submit']:hover {
+  background-color: var(--seconday-color);
+}
+
 :root {
-  --primary-color: #e9b7ff;
+  --primary-color: #7e29a3;
+  --seconday-color: #60177f;
   --link-color: #489efc;
   --light-color: #f4f4f4;
   --danger-color: #271819;
