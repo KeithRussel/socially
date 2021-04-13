@@ -6,12 +6,18 @@
   text-align: center;
 }
 
+.fb40 {
+  flex-basis: 40%;
+  padding: 2rem;
+  margin: auto;
+}
+
 .loginBgImage {
   background-image: url(../public/uploads/sampleimage.jpg);
   height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
-  width: 58.3%;
+  flex-basis: 60%;
   align-items: flex-end;
   display: grid;
 }

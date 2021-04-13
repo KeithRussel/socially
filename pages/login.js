@@ -11,7 +11,7 @@ function Login() {
         <h2>Get to know with others.</h2>
       </div>
 
-      <div className='m-auto'>
+      <div className={styles.fb40}>
         <form>
           <h2>Login to Socially</h2>
           <div className='d-grid'>
