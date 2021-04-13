@@ -2,12 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
 
-export default function Login() {
+function Login() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.loginBgImage}>
         <div className={styles.bgBlack}></div>
-        <Link href='#'>Socially</Link>
+        <Link href='#'>SociallysSzxc</Link>
         <h2>Get to know with others.</h2>
       </div>
       <form>
@@ -45,3 +45,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
