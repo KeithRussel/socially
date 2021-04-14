@@ -2,6 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
 
+const submitHandler = (e) => {
+  e.preventDefault();
+  console.log('Button Clicked');
+};
+
 function Login() {
   return (
     <div className={styles.wrapper}>
@@ -12,7 +17,7 @@ function Login() {
       </div>
 
       <div className={styles.fb40}>
-        <form>
+        <form onSubmit={submitHandler}>
           <h2>Login to Socially</h2>
           <div className='d-grid'>
             <input
@@ -31,7 +36,7 @@ function Login() {
               required
             />
 
-            <input type='submit' value='Submit' />
+            <button type='submit'>Submit</button>
           </div>
 
           <div>
