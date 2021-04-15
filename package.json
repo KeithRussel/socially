@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "next:dev": "next",
-    "dev": "concurrently \"cross-env NODE_ENV=development node server.js\" \"npm run next:dev\"",
+    "dev": "concurrently \"npm run next:dev\" \"node server.js\"",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node server.js",
     "data:import": "node seeder",
