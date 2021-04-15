@@ -1,13 +1,33 @@
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
+import { login } from '../actions/userActions';
 
-const submitHandler = (e) => {
-  e.preventDefault();
-  console.log('Button Clicked');
-};
+function Login({ history }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-function Login() {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push('/');
+    }
+    // console.log(window.localStorage);
+  }, [history, userInfo]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log('Button Clicked');
+
+    dispatch(login(email, password));
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.loginBgImage}>
@@ -22,9 +42,11 @@ function Login() {
           <div className='d-grid'>
             <input
               className={styles.loginInput}
-              type='text'
-              placeholder='Enter Username'
-              name='uname'
+              type='email'
+              placeholder='Enter Email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name='email'
               required
             />
 
@@ -32,6 +54,8 @@ function Login() {
               className={styles.loginInput}
               type='password'
               placeholder='Enter Password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               name='psw'
               required
             />

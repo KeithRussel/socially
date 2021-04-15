@@ -1,10 +1,21 @@
 import { useMemo } from 'react';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { userLoginReducer } from './reducers/userReducers';
 
 let store;
 
-const initialState = {};
+const reducer = combineReducers({
+  userLogin: userLoginReducer,
+});
+
+// const userInfoFromStorage = localStorage.getItem('userInfo')
+//   ? JSON.parse(localStorage.getItem('userInfo'))
+//   : null;
+
+const initialState = {
+  // userLogin: { userInfo: userInfoFromStorage },
+};
 
 function initStore(preloadedState = initialState) {
   return createStore(
