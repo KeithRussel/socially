@@ -4,12 +4,13 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const users = require('./data/users');
-const { serverDev } = require('./config');
+// const { serverDev } = require('./config');
 const userRoutes = require('./routes/userRoutes');
 const connectDB = require('./utils/dbConnect');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
-const app = next({ serverDev });
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
 const handle = app.getRequestHandler();
 
 dotenv.config();
