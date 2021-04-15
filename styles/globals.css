@@ -36,6 +36,7 @@ select {
   box-sizing: border-box;
 }
 
+button,
 input[type='submit'] {
   width: 100%;
   background-color: var(--primary-color);
@@ -47,6 +48,7 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+button:hover,
 input[type='submit']:hover {
   background-color: var(--seconday-color);
 }
