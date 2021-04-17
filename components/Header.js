@@ -5,6 +5,11 @@ import { logout } from '../actions/userActions';
 import styles from '../styles/styleComponents/Header.module.css';
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <header className={styles.header}>
       <nav className={`${styles.mainNav} container`}>
@@ -23,9 +28,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href='!#'>
-              <a>Logout</a>
-            </Link>
+            <a onClick={logoutHandler}>Logout</a>
           </li>
         </ul>
       </nav>
