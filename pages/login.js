@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initializeStore } from '../store';
 import { login } from '../actions/userActions';
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -16,14 +14,14 @@ function Login() {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     if (userInfo) {
       router.push('/');
       console.log('userinfo enable');
     }
-    console.log(window.localStorage);
+    console.log(userInfo);
   }, [userInfo]);
 
   const submitHandler = (e) => {
