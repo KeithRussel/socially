@@ -3,7 +3,8 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userLoginReducer } from './reducers/userReducers';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+// import storage from 'redux-persist/lib/storage';
+import storage from './config/storage';
 import thunkMiddleware from 'redux-thunk';
 
 let store;
@@ -11,10 +12,6 @@ let store;
 const reducer = combineReducers({
   userLogin: userLoginReducer,
 });
-
-// const userInfoFromStorage = localStorage.getItem('userInfo')
-//   ? JSON.parse(localStorage.getItem('userInfo'))
-//   : null;
 
 const initState = {
   userLogin: { userInfo: storage },

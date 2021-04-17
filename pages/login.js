@@ -5,7 +5,7 @@ import { login } from '../actions/userActions';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
-// import useSwr from 'swr'
+import {useRouter} from 'next/router'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -16,9 +16,11 @@ function Login() {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  const router = useRouter()
+
   useEffect(() => {
     if (userInfo) {
-      // history.push('/');
+      router.push('/');
       console.log('userinfo enable');
     }
     console.log(window.localStorage);
