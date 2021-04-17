@@ -18,14 +18,18 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post('/login', { email, password }, config);
+    const { data } = await axios.post(
+      '/api/login',
+      { email, password },
+      config
+    );
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
 
-    window.localStorage.setItem('userInfo', JSON.stringify(data));
+    // window.localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,

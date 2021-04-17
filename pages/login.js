@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { initializeStore } from '../store';
+import { login } from '../actions/userActions';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
-import { login } from '../actions/userActions';
+// import useSwr from 'swr'
 
-function Login({ history }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,16 +18,16 @@ function Login({ history }) {
 
   useEffect(() => {
     if (userInfo) {
-      history.push('/');
+      // history.push('/');
+      console.log('userinfo enable');
     }
-    // console.log(window.localStorage);
-  }, [history, userInfo]);
+    console.log(window.localStorage);
+  }, [userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('Button Clicked');
-
     dispatch(login(email, password));
+    console.log('Button Clicked');
   };
 
   return (
@@ -42,10 +44,10 @@ function Login({ history }) {
           <div className='d-grid'>
             <input
               className={styles.loginInput}
-              type='email'
-              placeholder='Enter Email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              type='email'
+              placeholder='Enter Email'
               name='email'
               required
             />
@@ -73,5 +75,16 @@ function Login({ history }) {
     </div>
   );
 }
+
+// export const getStaticProps = async () => {
+//   const res = await fetch(`${serverDev}/login`);
+//   const userLogin = await res.json();
+
+//   return {
+//     props: {
+//       userLogin,
+//     },
+//   };
+// };
 
 export default Login;

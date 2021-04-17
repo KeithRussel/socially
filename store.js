@@ -2,6 +2,9 @@ import { useMemo } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userLoginReducer } from './reducers/userReducers';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import thunkMiddleware from 'redux-thunk';
 
 let store;
 
@@ -13,25 +16,33 @@ const reducer = combineReducers({
 //   ? JSON.parse(localStorage.getItem('userInfo'))
 //   : null;
 
-const initialState = {
-  // userLogin: { userInfo: userInfoFromStorage },
+const initState = {
+  userLogin: { userInfo: storage },
 };
 
-function initStore(preloadedState = initialState) {
+const persistConfig = {
+  key: 'primary',
+  storage,
+  whitelist: ['userLogin'],
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+function makeStore(initialState = initState) {
   return createStore(
-    reducer,
-    preloadedState,
-    composeWithDevTools(applyMiddleware())
+    persistedReducer,
+    initialState,
+    composeWithDevTools(applyMiddleware(thunkMiddleware))
   );
 }
 
 export const initializeStore = (preloadedState) => {
-  let _store = store ?? initStore(preloadedState);
+  let _store = store ?? makeStore(preloadedState);
 
   // After navigating to a page with an initial Redux state, merge that state
   // with the current state in the store, and create a new store
   if (preloadedState && store) {
-    _store = initStore({
+    _store = makeStore({
       ...store.getState(),
       ...preloadedState,
     });
