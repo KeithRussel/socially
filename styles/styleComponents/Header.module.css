@@ -1,0 +1,22 @@
+.header {
+  background-color: #fff;
+  box-shadow: 0px -4px 6px;
+}
+
+.mainNav {
+  display: flex;
+}
+
+.mainNav a {
+  align-self: center;
+}
+
+.navList {
+  display: flex;
+  margin-left: auto;
+  list-style: none;
+}
+
+.navList li a {
+  padding: 0 1rem;
+}
