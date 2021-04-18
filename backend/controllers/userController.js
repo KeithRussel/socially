@@ -6,7 +6,7 @@ const User = require('../models/UserModel');
 // const app = next({ dev });
 
 // @desc    Auth user & get token
-// @route   POST /login
+// @route   POST /api/users/login
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
   // return app.render(req, res, '/a', req.query);
@@ -37,10 +37,38 @@ const getUserProfile = asyncHandler(async (req, res) => {
 });
 
 // @desc    Register a new user
-// @route   POST /
+// @route   POST /api/users/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  res.json('Register User');
+  // res.json('Register User');
+  const { firstName, lastName, email, password } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists');
+  }
+
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    password,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error('Invalid user data');
+  }
 });
 
 // @desc    Get all users

@@ -23,7 +23,7 @@ app.prepare().then(() => {
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(bodyParser.json());
 
-  server.use(userRoutes);
+  server.use('/api/users', userRoutes);
 
   server.get('/a', (req, res) => {
     return app.render(req, res, '/a', req.query);

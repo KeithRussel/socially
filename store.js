@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { userLoginReducer } from './reducers/userReducers';
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
 import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 import storage from './config/storage';
@@ -11,6 +11,7 @@ let store;
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
 });
 
 const initState = {
