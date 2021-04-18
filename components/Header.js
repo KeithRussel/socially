@@ -28,6 +28,11 @@ const Header = () => {
             </Link>
           </li>
           <li>
+            <Link href='/register'>
+              <a>Register</a>
+            </Link>
+          </li>
+          <li>
             <a onClick={logoutHandler}>Logout</a>
           </li>
         </ul>

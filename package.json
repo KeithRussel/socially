@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "next:dev": "next",
-    "dev": "node server.js",
+    "dev": "node backend/server.js",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production node server.js",
+    "start": "cross-env NODE_ENV=production node backend/server.js",
     "data:import": "node seeder",
-    "data:destroy": "node seeder -d"
+    "data:destroy": "node seeder -d",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "dependencies": {
     "axios": "^0.21.1",
