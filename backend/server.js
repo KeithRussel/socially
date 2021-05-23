@@ -1,12 +1,14 @@
-const express = require('express');
-const next = require('next');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const colors = require('colors');
 const users = require('./data/users');
 // const { serverDev } = require('./config');
 const userRoutes = require('./routes/userRoutes');
 const connectDB = require('./utils/dbConnect');
+
+const express = require('express');
+const next = require('next');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -25,18 +27,12 @@ app.prepare().then(() => {
 
   server.use('/api/users', userRoutes);
 
-  server.get('/a', (req, res) => {
-    return app.render(req, res, '/a', req.query);
-  });
-
-  server.get('/b', (req, res) => {
-    // return app.render(req, res, '/b', res.json({ user: 'tj' }));
-    res.json(users);
-  });
-
   server.all('*', (req, res) => {
     return handle(req, res);
   });
+
+  server.use(notFound);
+  server.use(errorHandler);
 
   server.listen(port, (err) => {
     if (err) throw err;

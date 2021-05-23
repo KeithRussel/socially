@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema(
     lastName: {
       type: String,
     },
+    profilePicture: {
+      type: Object,
+      default: {},
+    },
   },
   {
     timestamps: true,

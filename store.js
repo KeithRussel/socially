@@ -16,12 +16,13 @@ const reducer = combineReducers({
 
 const initState = {
   userLogin: { userInfo: storage },
+  userRegister: { userInfo: storage },
 };
 
 const persistConfig = {
   key: 'primary',
   storage,
-  whitelist: ['userLogin'],
+  whitelist: ['userLogin', 'userRegister'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
