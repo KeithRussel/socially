@@ -24,11 +24,33 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Create my profile
+// @desc    Create & Update my profile
 // @route   POST /api/profile
 // @access  Private
-const createUserProfile = asyncHandler(async (req, res) => {
-  res.json('Create User Profile');
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const { bio, location } = req.body;
+
+  // Build profile object
+  const profileFields = {
+    user: req.user._id,
+    location,
+    bio,
+  };
+
+  try {
+    let profile = await Profile.findOneAndUpdate(
+      { user: req.user.id },
+      { $set: profileFields },
+      { new: true, upsert: true }
+    );
+
+    res.json(profile);
+  } catch (error) {
+    res.status(500);
+    throw new Error('Cant update, Profile not found');
+  }
+
+  // res.json('Create User Profile');
 });
 
-module.exports = { getUserProfile, createUserProfile };
+module.exports = { getUserProfile, updateUserProfile };

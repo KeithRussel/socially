@@ -12,7 +12,11 @@ const Profile = () => {
   const {
     loading,
     error,
-    userProfile: { firstName },
+    userProfile: {
+      user: { firstName, lastName },
+      bio,
+      location,
+    },
   } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -28,9 +32,14 @@ const Profile = () => {
   return (
     <>
       <Layout title='Profile' />
-      <div>My Profile</div>
-      {firstName}
-      <h2></h2>
+      <h1>My Profile</h1>
+      <div>
+        <p>
+          Name: {firstName} {lastName}
+        </p>
+        <p>Bio: {bio}</p>
+        <p>location: {location}</p>
+      </div>
     </>
   );
 };
