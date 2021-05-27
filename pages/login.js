@@ -18,7 +18,7 @@ function Login() {
 
   useEffect(() => {
     if (userInfo) {
-      router.push('/');
+      router.push('/profile');
       console.log('userinfo enable');
     }
     console.log(userInfo);

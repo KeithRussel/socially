@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const users = require('./data/users');
+const profiles = require('./data/profiles');
 const User = require('./models/UserModel');
+const Profile = require('./models/ProfileModel');
 const connectDB = require('./utils/dbConnect');
 
 dotenv.config();
@@ -11,9 +13,13 @@ connectDB();
 
 const importData = async () => {
   try {
-    await User.deleteMany();
+    // await User.deleteMany();
 
-    await User.insertMany(users);
+    // await User.insertMany(users);
+
+    await Profile.deleteMany();
+
+    await Profile.insertMany(profiles);
 
     console.log('Data Imported!'.green.inverse);
     process.exit();

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/userActions';
 import { logout } from '../actions/userActions';
@@ -19,13 +18,6 @@ const Header = () => {
     console.log('Logout Clicked');
   };
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     router.push('/');
-  //     console.log('userinfo enable');
-  //   }
-  //   console.log(userInfo);
-  // }, [userInfo]);
   return (
     <header className={styles.header}>
       <nav className={`${styles.mainNav} container`}>

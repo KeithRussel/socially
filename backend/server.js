@@ -5,6 +5,7 @@ const colors = require('colors');
 const users = require('./data/users');
 // const { serverDev } = require('./config');
 const userRoutes = require('./routes/userRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 const connectDB = require('./utils/dbConnect');
 
 const express = require('express');
@@ -26,6 +27,7 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
 
   server.use('/api/users', userRoutes);
+  server.use('/api/profile', profileRoutes);
 
   server.all('*', (req, res) => {
     return handle(req, res);

@@ -69,26 +69,26 @@ const getUsers = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get user my profile
-// @route   GET /api/users/me
+// @route   GET /api/users/profile
 // @access  Private
-const getUserProfile = asyncHandler(async (req, res) => {
-  // res.json('Get User Profile');
-  const user = await User.findById(req.user._id);
+// const getUserProfile = asyncHandler(async (req, res) => {
+//   // res.json('Get User Profile');
+//   const user = await User.findById(req.user._id);
 
-  if (user) {
-    res.json({
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      profilePicture: user.profilePicture,
-    });
-  } else {
-    res.status(404);
-    throw new Error('User not found');
-  }
-});
+//   if (user) {
+//     res.json({
+//       _id: user._id,
+//       firstName: user.firstName,
+//       lastName: user.lastName,
+//       email: user.email,
+//       // isAdmin: user.isAdmin,
+//       profilePicture: user.profilePicture,
+//     });
+//   } else {
+//     res.status(404);
+//     throw new Error('User not found');
+//   }
+// });
 
 // export { authUser };
-module.exports = { authUser, getUserProfile, registerUser, getUsers };
+module.exports = { authUser, registerUser, getUsers };

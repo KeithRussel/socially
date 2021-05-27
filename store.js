@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
+import { getUserProfileReducer } from './reducers/profileReducers';
 import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 import storage from './config/storage';
@@ -12,17 +13,19 @@ let store;
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userDetails: getUserProfileReducer,
 });
 
 const initState = {
   userLogin: { userInfo: storage },
   userRegister: { userInfo: storage },
+  userDetails: { userProfile: storage },
 };
 
 const persistConfig = {
   key: 'primary',
   storage,
-  whitelist: ['userLogin', 'userRegister'],
+  whitelist: ['userLogin', 'userRegister', 'userDetails'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
